@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwn4mdqya7iqw"]
+[gd_scene load_steps=8 format=3 uid="uid://dwn4mdqya7iqw"]
 
+[ext_resource type="Texture2D" uid="uid://7nhnxgx6powh" path="res://assests/backgrounds/main.png" id="1_cm3j0"]
 [ext_resource type="Script" path="res://snake.gd" id="1_o3v70"]
-[ext_resource type="Texture2D" uid="uid://b18mr5fafxip1" path="res://assests/sprites/head.png" id="2_1quxu"]
-[ext_resource type="Texture2D" uid="uid://bv61xdybtmcb6" path="res://assests/sprites/snake.png" id="2_rk4rj"]
+[ext_resource type="Texture2D" uid="uid://b18mr5fafxip1" path="res://assests/sprites/snake/head.png" id="3_5wuv7"]
 [ext_resource type="Script" path="res://food.gd" id="3_wmxqn"]
+[ext_resource type="Texture2D" uid="uid://bv61xdybtmcb6" path="res://assests/sprites/snake/snake.png" id="5_ous22"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vnqca"]
 
@@ -11,30 +12,51 @@
 
 [node name="Main" type="Node"]
 
-[node name="Snake" type="Area2D" parent="."]
+[node name="CanvasLayer" type="TextureRect" parent="."]
+texture = ExtResource("1_cm3j0")
+
+[node name="Snake Game" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Snake Game"]
+offset_left = 233.0
+offset_top = 93.0
+offset_right = 555.0
+offset_bottom = 457.0
+
+[node name="Snake" type="Area2D" parent="Snake Game/ColorRect"]
+position = Vector2(29, 50)
 script = ExtResource("1_o3v70")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Snake"]
-texture = ExtResource("2_1quxu")
+[node name="Sprite2D" type="Sprite2D" parent="Snake Game/ColorRect/Snake"]
+texture = ExtResource("3_5wuv7")
 
-[node name="Timer" type="Timer" parent="Snake"]
+[node name="Timer" type="Timer" parent="Snake Game/ColorRect/Snake"]
 wait_time = 0.1
 autostart = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Snake"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Snake Game/ColorRect/Snake"]
 scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_vnqca")
 
-[node name="Food" type="Area2D" parent="." groups=["Food"]]
+[node name="Food" type="Area2D" parent="Snake Game/ColorRect" groups=["Food"]]
+position = Vector2(96, 52)
 script = ExtResource("3_wmxqn")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Food"]
-texture = ExtResource("2_rk4rj")
+[node name="Sprite2D" type="Sprite2D" parent="Snake Game/ColorRect/Food"]
+texture = ExtResource("5_ous22")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Food"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Snake Game/ColorRect/Food"]
 scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_iskva")
 
-[connection signal="area_entered" from="Snake" to="Snake" method="_on_area_entered"]
+[node name="File Sort" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="File Sort"]
+offset_left = 642.0
+offset_top = 98.0
+offset_right = 955.0
+offset_bottom = 445.0
+
+[connection signal="area_entered" from="Snake Game/ColorRect/Snake" to="Snake Game/ColorRect/Snake" method="_on_area_entered"]

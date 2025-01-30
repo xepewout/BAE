@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=2
+window/stretch/mode="viewport"
 
 [global_group]
 
@@ -51,4 +53,4 @@ Move_Right={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.42887, 0.370938, 0.251594, 1)
+environment/defaults/default_clear_color=Color(0.338346, 0.309883, 0.151561, 1)

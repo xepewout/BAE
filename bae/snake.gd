@@ -48,7 +48,7 @@ func grow():
 
 	# Create a new segment
 	var segment = Sprite2D.new()
-	segment.texture = preload("res://assests/sprites/snake.png")  # Use the same texture as the head
+	segment.texture = preload("res://assests/sprites/snake/snake.png") # Use the same texture as the head
 	
 	# Place new segment at the last position in segment_positions
 	var last_position = segment_positions[-1] if segment_positions else position
