@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://c26x2hhd463nq"]
+
+[ext_resource type="Script" path="res://snake.gd" id="1_ipxye"]
+[ext_resource type="Texture2D" uid="uid://b18mr5fafxip1" path="res://assests/sprites/snake/head.png" id="2_oqsp4"]
+[ext_resource type="Script" path="res://food.gd" id="3_k7xu1"]
+[ext_resource type="Texture2D" uid="uid://bv61xdybtmcb6" path="res://assests/sprites/snake/snake.png" id="4_dcki8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vnqca"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iskva"]
+
+[node name="Snake Game" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 233.0
+offset_top = 93.0
+offset_right = 555.0
+offset_bottom = 457.0
+
+[node name="Snake" type="Area2D" parent="ColorRect"]
+position = Vector2(29, 50)
+script = ExtResource("1_ipxye")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect/Snake"]
+texture = ExtResource("2_oqsp4")
+
+[node name="Timer" type="Timer" parent="ColorRect/Snake"]
+wait_time = 0.1
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/Snake"]
+scale = Vector2(0.8, 0.8)
+shape = SubResource("RectangleShape2D_vnqca")
+
+[node name="Food" type="Area2D" parent="ColorRect" groups=["Food"]]
+position = Vector2(96, 52)
+script = ExtResource("3_k7xu1")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect/Food"]
+texture = ExtResource("4_dcki8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/Food"]
+scale = Vector2(0.8, 0.8)
+shape = SubResource("RectangleShape2D_iskva")
+
+[connection signal="area_entered" from="ColorRect/Snake" to="ColorRect/Snake" method="_on_area_entered"]

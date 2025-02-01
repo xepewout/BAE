@@ -4,13 +4,12 @@ var direction := Vector2.RIGHT
 var segment_positions := []  # Stores positions of body segments
 var segments := []  # List of segment nodes
 
+@onready var main: Node = $"../../.."
 @export var grid_size := 16
 
 func _ready() -> void:
-	
 	$Timer.timeout.connect(_move)
 
-	
 func _input(event):
 	if event is InputEventKey and event.pressed:
 		match event.keycode:
@@ -25,9 +24,8 @@ func _move():
 
 	# Check for self-collision BEFORE updating the position
 	if new_position in segment_positions:
-		print("Game Over! Snake collided with itself.")
-		get_tree().reload_current_scene() 
-		return
+		main._damage()
+		
 
 	# Store the old head position to shift the body properly
 	segment_positions.insert(0, position)  # Store head's current position
@@ -48,7 +46,7 @@ func grow():
 
 	# Create a new segment
 	var segment = Sprite2D.new()
-	segment.texture = preload("res://assests/sprites/snake/snake.png") # Use the same texture as the head
+	segment.texture = preload("res://assests/sprites/snake/snake.png")
 	
 	# Place new segment at the last position in segment_positions
 	var last_position = segment_positions[-1] if segment_positions else position
