@@ -60,6 +60,7 @@ func _damage():
 		add_child(fileSort)
 		
 func _beerTime():
+	get_tree().paused = true
 	beer_timer.start(randi_range(5,20))
 	if !beer:
 		beer = BEER.instantiate()
@@ -87,6 +88,7 @@ func _beer():
 	beer.queue_free()
 	beer = null
 	display_timer.start(1)
+	get_tree().paused = false
 	if electric:
 		electric_pic.visible = true
 		if fileSort:

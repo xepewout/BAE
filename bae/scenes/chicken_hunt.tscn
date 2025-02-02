@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://bm7xurfatgfhg"]
+
+[ext_resource type="Script" path="res://chicken_hunt.gd" id="1_sj5im"]
+[ext_resource type="Texture2D" uid="uid://cn73xun1n60rw" path="res://assests/sprites/ui/window2.png" id="2_5xcp5"]
+[ext_resource type="Script" path="res://crosshair.gd" id="3_554ue"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wrcnm"]
+
+[sub_resource type="Curve2D" id="Curve2D_jwako"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 232, 96, 0, 0, 0, 0, 552, 96, 0, 0, 0, 0, 552, 448, 0, 0, 0, 0, 232, 448, 0, 0, 0, 0, 232, 96)
+}
+point_count = 5
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_vm4q6"]
+a = Vector2(-10, -48)
+b = Vector2(-10, 673)
+
+[node name="ChickenHunt" type="Node2D"]
+script = ExtResource("1_sj5im")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 205.0
+offset_top = 55.0
+offset_right = 577.0
+offset_bottom = 477.0
+texture = ExtResource("2_5xcp5")
+
+[node name="ColorRect" type="ColorRect" parent="TextureRect"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 36.0
+offset_right = 350.0
+offset_bottom = 400.0
+
+[node name="Reticule" type="ColorRect" parent="TextureRect"]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 195.0
+offset_right = 186.0
+offset_bottom = 216.0
+color = Color(0, 0, 0, 1)
+
+[node name="Crosshair" type="Area2D" parent="TextureRect"]
+position = Vector2(176, 205)
+script = ExtResource("3_554ue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TextureRect/Crosshair"]
+shape = SubResource("CircleShape2D_wrcnm")
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="MobPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_jwako")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+position = Vector2(232, 96)
+
+[node name="Wall" type="Area2D" parent="." groups=["Wall"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(216, -16)
+shape = SubResource("SegmentShape2D_vm4q6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall"]
+position = Vector2(584, -40)
+shape = SubResource("SegmentShape2D_vm4q6")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Wall"]
+position = Vector2(1024, 72)
+rotation = 1.5708
+scale = Vector2(2, 2)
+shape = SubResource("SegmentShape2D_vm4q6")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Wall"]
+position = Vector2(1032, 496)
+rotation = 1.5708
+scale = Vector2(2, 2)
+shape = SubResource("SegmentShape2D_vm4q6")
+
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]

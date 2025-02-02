@@ -23,6 +23,7 @@ offset_bottom = 483.0
 texture = ExtResource("2_8ljnk")
 
 [node name="ColorRect" type="ColorRect" parent="Buckets/CanvasLayer"]
+layout_mode = 0
 offset_left = 33.0
 offset_top = 33.0
 offset_right = 346.0

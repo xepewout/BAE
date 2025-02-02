@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bjanggsdnomer" path="res://assests/sprites/beer/bar.png" id="4_2tcnx"]
 
 [node name="Beer" type="Node2D"]
+process_mode = 2
 z_index = 1
 position = Vector2(1015, 260)
 script = ExtResource("1_w6745")

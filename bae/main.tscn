@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwn4mdqya7iqw"]
+[gd_scene load_steps=13 format=3 uid="uid://dwn4mdqya7iqw"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_qi0bm"]
 [ext_resource type="Texture2D" uid="uid://cyi6u8swj4gpj" path="res://assests/backgrounds/days/day1.png" id="2_qknfs"]
@@ -11,8 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://bs63ryecviqnn" path="res://assests/backgrounds/electric.png" id="10_k0we2"]
 [ext_resource type="Texture2D" uid="uid://b40645sstsqp0" path="res://assests/sprites/ui/angerBar.png" id="11_51jik"]
 [ext_resource type="Texture2D" uid="uid://cptiw3v7iyamf" path="res://assests/backgrounds/drunk.png" id="11_rditm"]
+[ext_resource type="PackedScene" uid="uid://bm7xurfatgfhg" path="res://scenes/chicken_hunt.tscn" id="12_atbuu"]
 
 [node name="Main" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_qi0bm")
 
 [node name="CanvasLayer" type="TextureRect" parent="."]
@@ -108,6 +110,8 @@ texture = ExtResource("11_rditm")
 
 [node name="DisplayTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="ChickenHunt" parent="." instance=ExtResource("12_atbuu")]
 
 [connection signal="timeout" from="BeerTimer" to="." method="_beerTime"]
 [connection signal="toggled" from="SnakeButton" to="." method="_snakeTime"]
