@@ -1,55 +1,34 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdufxww257r7f"]
+[gd_scene load_steps=9 format=3 uid="uid://bdufxww257r7f"]
 
+[ext_resource type="Script" path="res://scenes/file_sort.gd" id="1_h47lh"]
 [ext_resource type="Script" path="res://buckets.gd" id="1_x52ow"]
 [ext_resource type="Texture2D" uid="uid://csefuu0mbjncn" path="res://assests/sprites/fileSort/Buckets/redBucket.png" id="2_3bhmk"]
+[ext_resource type="Texture2D" uid="uid://duajqn14xtq28" path="res://assests/sprites/ui/window.png" id="2_8ljnk"]
 [ext_resource type="Texture2D" uid="uid://cmwwrbebu14p" path="res://assests/sprites/fileSort/Buckets/greenBucket.png" id="3_dwsia"]
 [ext_resource type="Texture2D" uid="uid://cxmxv8ja77doi" path="res://assests/sprites/fileSort/Buckets/blueBucket.png" id="4_uoyrt"]
 [ext_resource type="Texture2D" uid="uid://1wx2ic8suv7t" path="res://assests/sprites/ui/timerBarBack.png" id="5_ewtby"]
 [ext_resource type="Texture2D" uid="uid://c0stt7whbsw0x" path="res://assests/sprites/ui/timerBar.png" id="6_dscht"]
 
 [node name="File Sort" type="Node2D"]
+script = ExtResource("1_h47lh")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = 642.0
-offset_top = 98.0
-offset_right = 955.0
-offset_bottom = 445.0
-
-[node name="Buckets" type="Node2D" parent="ColorRect"]
-position = Vector2(-642, -98)
+[node name="Buckets" type="Node2D" parent="."]
 script = ExtResource("1_x52ow")
 
-[node name="redBucket" type="Node2D" parent="ColorRect/Buckets"]
-position = Vector2(900, 392)
-metadata/_edit_group_ = true
+[node name="CanvasLayer" type="TextureRect" parent="Buckets"]
+offset_left = 609.0
+offset_top = 71.0
+offset_right = 974.0
+offset_bottom = 483.0
+texture = ExtResource("2_8ljnk")
 
-[node name="Sprite2D" type="Sprite2D" parent="ColorRect/Buckets/redBucket"]
-texture = ExtResource("2_3bhmk")
+[node name="ColorRect" type="ColorRect" parent="Buckets/CanvasLayer"]
+offset_left = 33.0
+offset_top = 33.0
+offset_right = 346.0
+offset_bottom = 380.0
 
-[node name="greenBucket" type="Node2D" parent="ColorRect/Buckets"]
-position = Vector2(804, 394)
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="ColorRect/Buckets/greenBucket"]
-texture = ExtResource("3_dwsia")
-
-[node name="blueBucket" type="Node2D" parent="ColorRect/Buckets"]
-position = Vector2(700, 390)
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="ColorRect/Buckets/blueBucket"]
-texture = ExtResource("4_uoyrt")
-
-[node name="file" type="Node2D" parent="ColorRect/Buckets"]
-position = Vector2(794, 226)
-
-[node name="Sprite2D" type="Sprite2D" parent="ColorRect/Buckets/file"]
-
-[node name="Timer" type="Timer" parent="ColorRect/Buckets"]
-wait_time = 5.0
-autostart = true
-
-[node name="timerBar" type="TextureProgressBar" parent="ColorRect"]
+[node name="timerBar" type="TextureProgressBar" parent="Buckets/CanvasLayer/ColorRect"]
 layout_mode = 0
 offset_left = 190.0
 offset_top = 8.0
@@ -58,4 +37,34 @@ offset_bottom = 25.0
 texture_under = ExtResource("5_ewtby")
 texture_progress = ExtResource("6_dscht")
 
-[connection signal="timeout" from="ColorRect/Buckets/Timer" to="ColorRect/Buckets" method="_shuffle"]
+[node name="redBucket" type="Node2D" parent="Buckets"]
+position = Vector2(900, 392)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Buckets/redBucket"]
+texture = ExtResource("2_3bhmk")
+
+[node name="greenBucket" type="Node2D" parent="Buckets"]
+position = Vector2(804, 394)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Buckets/greenBucket"]
+texture = ExtResource("3_dwsia")
+
+[node name="blueBucket" type="Node2D" parent="Buckets"]
+position = Vector2(700, 390)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Buckets/blueBucket"]
+texture = ExtResource("4_uoyrt")
+
+[node name="file" type="Node2D" parent="Buckets"]
+position = Vector2(794, 226)
+
+[node name="Sprite2D" type="Sprite2D" parent="Buckets/file"]
+
+[node name="Timer" type="Timer" parent="Buckets"]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Buckets/Timer" to="Buckets" method="_shuffle"]

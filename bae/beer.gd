@@ -2,26 +2,38 @@ extends Node2D
 @onready var timer: Timer = $Timer
 @onready var beer_mug: TextureProgressBar = $BeerMug
 var pressed = false
+var target = 50
+var output = 0
+@onready var main: Node = $".."
+@onready var sprite_2d: Sprite2D = $BeerMug/Sprite2D
+@onready var sprite_2d_2: Sprite2D = $BeerMug/Sprite2D2
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	target = randi_range(0,425)
+	sprite_2d.offset.y = 425 - (target-10)
+	sprite_2d_2.offset.y = 425 - (target + 10)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if pressed:
-		beer_mug.value = -(timer.time_left * 100) + 100 
-		print("timer")
-		print(timer.time_left)
-	
+		beer_mug.value = -(timer.time_left * 85) + 425 
+		
 func _input(event):
-	
 	if (event.is_action_pressed("space")):
 		timer.start()
 		pressed = true
-	if (event.is_action_released("space")):
-		pressed = false
 		
+	if (event.is_action_released("space")):
+		output = beer_mug.value
+		pressed = false
+		_checkTarget()
+
+func _checkTarget():
+	if (absi(output - target) < 10):
+		main.drunk = true
+		main.electric = false
+	else:
+		main.drunk = false
+		main.electric = true
+	main._beer()
 		
 			

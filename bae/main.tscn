@@ -1,18 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwn4mdqya7iqw"]
+[gd_scene load_steps=12 format=3 uid="uid://dwn4mdqya7iqw"]
 
-[ext_resource type="Texture2D" uid="uid://7nhnxgx6powh" path="res://assests/backgrounds/main.png" id="1_cm3j0"]
 [ext_resource type="Script" path="res://main.gd" id="1_qi0bm"]
-[ext_resource type="Script" path="res://beer.gd" id="5_gxdaf"]
-[ext_resource type="Texture2D" uid="uid://ci74xiwt1y7ku" path="res://assests/sprites/beer/emptyBeer.png" id="6_pxp5d"]
-[ext_resource type="Texture2D" uid="uid://c71o8p5m7fp11" path="res://assests/sprites/beer/beer.png" id="7_6h1y2"]
+[ext_resource type="Texture2D" uid="uid://cyi6u8swj4gpj" path="res://assests/backgrounds/days/day1.png" id="2_qknfs"]
+[ext_resource type="Texture2D" uid="uid://ct8qa2nr5vqqs" path="res://assests/sprites/ui/buttons/snakeIcon.png" id="5_ghql2"]
+[ext_resource type="Texture2D" uid="uid://c2s8ckxm8cj3s" path="res://assests/sprites/ui/buttons/fileSortIcon.png" id="6_poqp5"]
+[ext_resource type="Texture2D" uid="uid://cik3bh8wr3jh8" path="res://assests/sprites/ui/buttons/show.png" id="7_ibljf"]
+[ext_resource type="Texture2D" uid="uid://xsffyhpij8kf" path="res://assests/backgrounds/victory.png" id="8_7w3cx"]
+[ext_resource type="Texture2D" uid="uid://5eahl031hl2r" path="res://assests/backgrounds/gameOver.png" id="9_htxho"]
 [ext_resource type="Texture2D" uid="uid://ms2yk5xoogwx" path="res://assests/sprites/ui/blackBar.png" id="10_fu10p"]
+[ext_resource type="Texture2D" uid="uid://bs63ryecviqnn" path="res://assests/backgrounds/electric.png" id="10_k0we2"]
 [ext_resource type="Texture2D" uid="uid://b40645sstsqp0" path="res://assests/sprites/ui/angerBar.png" id="11_51jik"]
+[ext_resource type="Texture2D" uid="uid://cptiw3v7iyamf" path="res://assests/backgrounds/drunk.png" id="11_rditm"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node2D"]
 script = ExtResource("1_qi0bm")
 
 [node name="CanvasLayer" type="TextureRect" parent="."]
-texture = ExtResource("1_cm3j0")
+texture = ExtResource("2_qknfs")
 
 [node name="Anger" type="TextureProgressBar" parent="."]
 offset_left = 1225.0
@@ -24,20 +28,91 @@ fill_mode = 3
 texture_under = ExtResource("10_fu10p")
 texture_progress = ExtResource("11_51jik")
 
-[node name="Beer" type="Node2D" parent="."]
-position = Vector2(1015, 260)
-script = ExtResource("5_gxdaf")
+[node name="BeerTimer" type="Timer" parent="."]
 
-[node name="BeerMug" type="TextureProgressBar" parent="Beer"]
-anchors_preset = -1
-anchor_right = 4.025
-anchor_bottom = 9.625
-offset_right = 201.0
-offset_bottom = 425.0
-fill_mode = 3
-texture_under = ExtResource("6_pxp5d")
-texture_progress = ExtResource("7_6h1y2")
-metadata/_edit_use_anchors_ = true
+[node name="SnakeButton" type="Button" parent="."]
+visible = false
+offset_left = 208.0
+offset_top = 151.0
+offset_right = 283.0
+offset_bottom = 226.0
+toggle_mode = true
+icon = ExtResource("5_ghql2")
+flat = true
 
-[node name="Timer" type="Timer" parent="Beer"]
+[node name="FileSortButton" type="Button" parent="."]
+offset_left = 207.0
+offset_top = 69.0
+offset_right = 282.0
+offset_bottom = 144.0
+toggle_mode = true
+icon = ExtResource("6_poqp5")
+flat = true
+
+[node name="HideButton" type="Button" parent="."]
+offset_left = 487.0
+offset_top = 534.0
+offset_right = 686.0
+offset_bottom = 563.0
+toggle_mode = true
+action_mode = 0
+icon = ExtResource("7_ibljf")
+flat = true
+
+[node name="BeerLabel" type="Label" parent="."]
+offset_left = 1045.0
+offset_top = 107.0
+offset_right = 1085.0
+offset_bottom = 130.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="Victory" type="TextureRect" parent="."]
+visible = false
+offset_left = 346.0
+offset_top = 138.0
+offset_right = 854.0
+offset_bottom = 444.0
+texture = ExtResource("8_7w3cx")
+
+[node name="VictoryTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="GameOverTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="GameOver" type="TextureRect" parent="."]
+visible = false
+offset_left = 360.0
+offset_top = 131.0
+offset_right = 868.0
+offset_bottom = 437.0
+texture = ExtResource("9_htxho")
+
+[node name="ElectricPic" type="TextureRect" parent="."]
+visible = false
+z_index = 2
+offset_left = 345.0
+offset_top = 114.0
+offset_right = 853.0
+offset_bottom = 420.0
+texture = ExtResource("10_k0we2")
+
+[node name="DrunkPic" type="TextureRect" parent="."]
+visible = false
+z_index = 2
+offset_left = 345.0
+offset_top = 114.0
+offset_right = 853.0
+offset_bottom = 420.0
+texture = ExtResource("11_rditm")
+
+[node name="DisplayTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="BeerTimer" to="." method="_beerTime"]
+[connection signal="toggled" from="SnakeButton" to="." method="_snakeTime"]
+[connection signal="toggled" from="FileSortButton" to="." method="_fileSortTime"]
+[connection signal="toggled" from="HideButton" to="." method="_hide"]
+[connection signal="timeout" from="VictoryTimer" to="." method="_changeDays"]
+[connection signal="timeout" from="GameOverTimer" to="." method="_reload"]
+[connection signal="timeout" from="DisplayTimer" to="." method="_display"]

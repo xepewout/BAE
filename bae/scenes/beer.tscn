@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2defofvcy6y4"]
+
+[ext_resource type="Script" path="res://beer.gd" id="1_w6745"]
+[ext_resource type="Texture2D" uid="uid://ci74xiwt1y7ku" path="res://assests/sprites/beer/emptyBeer.png" id="2_6ri5t"]
+[ext_resource type="Texture2D" uid="uid://c71o8p5m7fp11" path="res://assests/sprites/beer/beer.png" id="3_10owa"]
+[ext_resource type="Texture2D" uid="uid://bjanggsdnomer" path="res://assests/sprites/beer/bar.png" id="4_2tcnx"]
+
+[node name="Beer" type="Node2D"]
+z_index = 1
+position = Vector2(1015, 260)
+script = ExtResource("1_w6745")
+
+[node name="BeerMug" type="TextureProgressBar" parent="."]
+anchors_preset = -1
+anchor_right = 4.025
+anchor_bottom = 9.625
+offset_left = -512.0
+offset_top = -75.0
+offset_right = -311.0
+offset_bottom = 350.0
+max_value = 425.0
+fill_mode = 3
+texture_under = ExtResource("2_6ri5t")
+texture_progress = ExtResource("3_10owa")
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="BeerMug"]
+texture = ExtResource("4_2tcnx")
+offset = Vector2(200, 425)
+
+[node name="Sprite2D2" type="Sprite2D" parent="BeerMug"]
+texture = ExtResource("4_2tcnx")
+offset = Vector2(200, 425)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
