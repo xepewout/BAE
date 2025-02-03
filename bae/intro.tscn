@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://5p23kml3gs1b"]
+
+[ext_resource type="Script" path="res://intro.gd" id="1_s8f1k"]
+[ext_resource type="Texture2D" uid="uid://qvkosi7rs18k" path="res://assests/backgrounds/days/title.png" id="2_hdryk"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(132, 213)
+script = ExtResource("1_s8f1k")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -249.0
+offset_top = -249.0
+offset_right = 1221.0
+offset_bottom = 553.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_left = -128.0
+offset_top = -207.0
+offset_right = 1152.0
+offset_bottom = 513.0
+texture = ExtResource("2_hdryk")
+
+[node name="EnterLabel" type="Label" parent="."]
+offset_left = -15.0
+offset_top = 434.0
+offset_right = 975.0
+offset_bottom = 479.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Press Enter to Continue..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+offset_right = 976.0
+offset_bottom = 237.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Since the pandemic in 2020, 
+many corporations have adopted a work–from–home modality. 
+To work in the comfort of your own home is a privilege. 
+Though, there are growing concerns this shift will lead to a 
+decrease in overall productivity. 
+"
+horizontal_alignment = 1
+vertical_alignment = 1

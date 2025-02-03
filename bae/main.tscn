@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cyi6u8swj4gpj" path="res://assests/backgrounds/days/day1.png" id="2_qknfs"]
 [ext_resource type="Texture2D" uid="uid://ct8qa2nr5vqqs" path="res://assests/sprites/ui/buttons/snakeIcon.png" id="5_ghql2"]
 [ext_resource type="Texture2D" uid="uid://c2s8ckxm8cj3s" path="res://assests/sprites/ui/buttons/fileSortIcon.png" id="6_poqp5"]
+[ext_resource type="Texture2D" uid="uid://ctgfci7rolkwb" path="res://assests/sprites/ui/buttons/chickenHuntIcon.png" id="7_2gcre"]
 [ext_resource type="Texture2D" uid="uid://cik3bh8wr3jh8" path="res://assests/sprites/ui/buttons/show.png" id="7_ibljf"]
 [ext_resource type="Texture2D" uid="uid://xsffyhpij8kf" path="res://assests/backgrounds/victory.png" id="8_7w3cx"]
 [ext_resource type="Texture2D" uid="uid://5eahl031hl2r" path="res://assests/backgrounds/gameOver.png" id="9_htxho"]
@@ -11,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://bs63ryecviqnn" path="res://assests/backgrounds/electric.png" id="10_k0we2"]
 [ext_resource type="Texture2D" uid="uid://b40645sstsqp0" path="res://assests/sprites/ui/angerBar.png" id="11_51jik"]
 [ext_resource type="Texture2D" uid="uid://cptiw3v7iyamf" path="res://assests/backgrounds/drunk.png" id="11_rditm"]
-[ext_resource type="PackedScene" uid="uid://bm7xurfatgfhg" path="res://scenes/chicken_hunt.tscn" id="12_atbuu"]
 
 [node name="Main" type="Node2D"]
 process_mode = 1
@@ -51,11 +51,21 @@ toggle_mode = true
 icon = ExtResource("6_poqp5")
 flat = true
 
+[node name="ChickenHuntButton" type="Button" parent="."]
+visible = false
+offset_left = 212.0
+offset_top = 243.0
+offset_right = 287.0
+offset_bottom = 318.0
+toggle_mode = true
+icon = ExtResource("7_2gcre")
+flat = true
+
 [node name="HideButton" type="Button" parent="."]
-offset_left = 487.0
-offset_top = 534.0
-offset_right = 686.0
-offset_bottom = 563.0
+offset_left = 503.0
+offset_top = 527.0
+offset_right = 702.0
+offset_bottom = 556.0
 toggle_mode = true
 action_mode = 0
 icon = ExtResource("7_ibljf")
@@ -111,12 +121,32 @@ texture = ExtResource("11_rditm")
 [node name="DisplayTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="ChickenHunt" parent="." instance=ExtResource("12_atbuu")]
+[node name="GameTimer" type="Timer" parent="."]
+process_mode = 3
+
+[node name="TimeLabel" type="Label" parent="."]
+visible = false
+offset_left = 559.0
+offset_top = 21.0
+offset_right = 599.0
+offset_bottom = 44.0
+
+[node name="Day4Label" type="Label" parent="."]
+visible = false
+offset_left = 388.0
+offset_top = 166.0
+offset_right = 966.0
+offset_bottom = 241.0
+text = "Thank you for playing,
+game is still a work in progress but the goal is to add more minigames revolving around the established concept! Hope you enjoyed!"
+autowrap_mode = 2
 
 [connection signal="timeout" from="BeerTimer" to="." method="_beerTime"]
 [connection signal="toggled" from="SnakeButton" to="." method="_snakeTime"]
 [connection signal="toggled" from="FileSortButton" to="." method="_fileSortTime"]
+[connection signal="toggled" from="ChickenHuntButton" to="." method="_chickenHuntTime"]
 [connection signal="toggled" from="HideButton" to="." method="_hide"]
 [connection signal="timeout" from="VictoryTimer" to="." method="_changeDays"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_reload"]
 [connection signal="timeout" from="DisplayTimer" to="." method="_display"]
+[connection signal="timeout" from="GameTimer" to="." method="_gameOver"]

@@ -1,15 +1,19 @@
 extends Node2D
 const CHICKEN = preload("res://scenes/chicken.tscn")
+@onready var chicken: Label = $Chicken
+@onready var main: Node = $"../"
+@onready var crosshair: Area2D = $TextureRect/Crosshair
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	chicken.set_text("Chickens caught \n" + str(main.chickensCaught) + "/10")
 
+func _electric():
+	crosshair.speed = crosshair.speed * 1.25
 
 func _on_mob_timer_timeout() -> void:
 	print("spawning")

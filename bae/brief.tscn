@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8jgihxnhuovu"]
+
+[ext_resource type="Script" path="res://brief.gd" id="1_nt5jd"]
+
+[node name="Brief" type="Node2D"]
+script = ExtResource("1_nt5jd")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 131.0
+offset_top = 91.0
+offset_right = 1165.0
+offset_bottom = 650.0
+color = Color(0.810722, 0.496633, 0.880834, 1)
+
+[node name="EnterLabel" type="Label" parent="."]
+offset_left = 127.0
+offset_top = 602.0
+offset_right = 1117.0
+offset_bottom = 647.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Press Enter to Continue..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+offset_left = -276.0
+offset_top = 156.0
+offset_right = 1598.0
+offset_bottom = 489.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Salutations worker. 
+I know you’re still new here, but you got targets to hit.
+ This is a big week. 
+Since you are still getting your bearings, 
+we’ll just have you sort files today.
+ If you cannot do this remedial task, you will be terminated. 
+Take care!
+"
+horizontal_alignment = 1
+vertical_alignment = 1

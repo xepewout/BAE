@@ -3,7 +3,6 @@ extends Node2D
 var direction := Vector2.RIGHT
 var segment_positions := []  # Stores positions of body segments
 var segments := []  # List of segment nodes
-var foodAte = 0
 
 @onready var main: Node = $"../../.."
 @export var grid_size := 16
@@ -68,9 +67,9 @@ func grow():
 func _on_area_entered(area):
 	if area.is_in_group("Food"):
 		grow()
-		foodAte+=1
+		main.foodAte+=1
 		area._move_to_new_position()
-		if foodAte == main.snakeTarget:
+		if main.foodAte == main.snakeTarget:
 			main._snakePass()
 	elif area.is_in_group("Wall"):
 		main.call_deferred("_damage")
