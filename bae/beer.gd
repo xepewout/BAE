@@ -13,7 +13,7 @@ func _ready() -> void:
 	sprite_2d.offset.y = 425 - (target-10)
 	sprite_2d_2.offset.y = 425 - (target + 10)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if pressed:
 		beer_mug.value = -(timer.time_left * 85) + 425 
 		

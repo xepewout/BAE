@@ -21,6 +21,7 @@ offset_top = 71.0
 offset_right = 974.0
 offset_bottom = 483.0
 texture = ExtResource("2_8ljnk")
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Buckets/CanvasLayer"]
 layout_mode = 0
@@ -28,6 +29,7 @@ offset_left = 33.0
 offset_top = 33.0
 offset_right = 346.0
 offset_bottom = 380.0
+metadata/_edit_use_anchors_ = true
 
 [node name="timerBar" type="TextureProgressBar" parent="Buckets/CanvasLayer/ColorRect"]
 layout_mode = 0
@@ -37,6 +39,7 @@ offset_right = 293.0
 offset_bottom = 25.0
 texture_under = ExtResource("5_ewtby")
 texture_progress = ExtResource("6_dscht")
+metadata/_edit_use_anchors_ = true
 
 [node name="redBucket" type="Node2D" parent="Buckets"]
 position = Vector2(900, 392)
@@ -75,5 +78,6 @@ offset_right = 667.0
 offset_bottom = 98.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [connection signal="timeout" from="Buckets/Timer" to="Buckets" method="_shuffle"]

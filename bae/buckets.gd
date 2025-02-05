@@ -15,16 +15,14 @@ var timerTime = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if !(main.fileStart):
-		for i in buckets.size():
-			buckets[i].position = Vector2 (700,394) + addVector
-			addVector = addVector + Vector2(100,0)
-		main.fileStart = true
-	else:
-		_shuffle()
+
+	for i in buckets.size():
+		buckets[i].position = Vector2 (700,394) + addVector
+		addVector = addVector + Vector2(100,0)
+
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	timer_bar.value = timer.time_left * 20
 	
 func _shuffle():

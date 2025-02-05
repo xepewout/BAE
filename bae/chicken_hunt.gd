@@ -9,11 +9,12 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	chicken.set_text("Chickens caught \n" + str(main.chickensCaught) + "/10")
 
 func _electric():
 	crosshair.speed = crosshair.speed * 1.25
+	
 
 func _on_mob_timer_timeout() -> void:
 	print("spawning")
@@ -35,6 +36,8 @@ func _on_mob_timer_timeout() -> void:
 
 	# Choose the velocity for the mob.
 	var velocity = Vector2(randf_range(50.0, 70.0), 0.0)
+	if main.electric:
+		velocity = velocity * randf_range(1,3)
 	mob.linear_velocity = velocity.rotated(direction)
 
 	# Spawn the mob by adding it to the Main scene.

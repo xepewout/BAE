@@ -1,0 +1,103 @@
+[gd_scene load_steps=13 format=3 uid="uid://b0ivvilm0hoxd"]
+
+[ext_resource type="Script" path="res://scenes/chicken_sort.gd" id="1_xgf3y"]
+[ext_resource type="Texture2D" uid="uid://duajqn14xtq28" path="res://assests/sprites/ui/window.png" id="3_b5vws"]
+[ext_resource type="Texture2D" uid="uid://bwbjv6bxokfsa" path="res://assests/sprites/chickenSort/chicken1.png" id="4_kl4u4"]
+[ext_resource type="Texture2D" uid="uid://1wx2ic8suv7t" path="res://assests/sprites/ui/timerBarBack.png" id="4_srrxo"]
+[ext_resource type="Texture2D" uid="uid://c0stt7whbsw0x" path="res://assests/sprites/ui/timerBar.png" id="5_n2upm"]
+[ext_resource type="Texture2D" uid="uid://0xm786wdpgpe" path="res://assests/sprites/chickenSort/chicken4.png" id="5_ssvrf"]
+[ext_resource type="Texture2D" uid="uid://bxq1coj1ymku8" path="res://assests/sprites/chickenSort/chicken3.png" id="7_ugflx"]
+[ext_resource type="Texture2D" uid="uid://bwoy5ry778wwu" path="res://assests/sprites/chickenSort/chicken2.png" id="8_us4oj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dpvf"]
+size = Vector2(114, 122)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3lute"]
+size = Vector2(285, 310)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cj2i"]
+size = Vector2(114.5, 123.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sr1ew"]
+size = Vector2(287.5, 307.5)
+
+[node name="Chicken Sort" type="Node2D"]
+script = ExtResource("1_xgf3y")
+
+[node name="CanvasLayer" type="TextureRect" parent="."]
+visible = false
+offset_left = 814.0
+offset_top = 126.0
+offset_right = 1179.0
+offset_bottom = 538.0
+texture = ExtResource("3_b5vws")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 33.0
+offset_right = 346.0
+offset_bottom = 380.0
+metadata/_edit_use_anchors_ = true
+
+[node name="timerBar" type="TextureProgressBar" parent="CanvasLayer/ColorRect"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 8.0
+offset_right = 293.0
+offset_bottom = 25.0
+texture_under = ExtResource("4_srrxo")
+texture_progress = ExtResource("5_n2upm")
+metadata/_edit_use_anchors_ = true
+
+[node name="Chicken" type="Area2D" parent="."]
+position = Vector2(1075, 273)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chicken"]
+shape = SubResource("RectangleShape2D_3dpvf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Chicken"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_kl4u4")
+
+[node name="ChickenM" type="Area2D" parent="."]
+position = Vector2(935, 273)
+scale = Vector2(0.4, 0.4)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="ChickenM"]
+texture = ExtResource("5_ssvrf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChickenM"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_3lute")
+
+[node name="Fox" type="Area2D" parent="."]
+position = Vector2(935, 415)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Fox"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("7_ugflx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fox"]
+position = Vector2(-0.25, 0.25)
+shape = SubResource("RectangleShape2D_1cj2i")
+
+[node name="Fox1" type="Area2D" parent="."]
+position = Vector2(1075, 415)
+scale = Vector2(0.4, 0.4)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Fox1"]
+texture = ExtResource("8_us4oj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fox1"]
+position = Vector2(-1.25, -1.25)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_sr1ew")
+
+[connection signal="input_event" from="Chicken" to="." method="_on_chicken_input_event"]
+[connection signal="input_event" from="ChickenM" to="." method="_on_chicken_input_event"]

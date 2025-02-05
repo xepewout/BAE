@@ -14,7 +14,7 @@ var chickenHunt = CHICKEN_HUNT.instantiate()
 #VARIABLE STATES
 var drunk = false
 var electric = false
-var day = 1
+var day = 3
 var passedGames = 0
 var fileStart = false
 var hidePress = true
@@ -59,7 +59,7 @@ func _ready() -> void:
 	_changeDays()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	beer_label.set_text("time to next beer \n" + str(beer_timer.get_time_left()).pad_decimals(1))
 	time_label.set_text("TIME REMAINING: " + str(game_timer.get_time_left()).pad_decimals(1))
 	if Input.is_action_just_pressed("tab"):
@@ -70,6 +70,7 @@ func _process(delta: float) -> void:
 
 func _damage2():
 	anger.value += 10
+
 func _damage():
 	anger.value += 10
 	if drunk:
@@ -107,6 +108,9 @@ func _beerTime():
 		_damage()
 
 func _snakeTime(toggle):
+	print(toggle)
+	print(!snake)
+	print(snake_button.visible)
 	if toggle and !snake and snake_button.visible == true:
 		snake = SNAKE_GAME.instantiate()
 		add_child(snake)
@@ -114,26 +118,24 @@ func _snakeTime(toggle):
 			_fileSortTime(toggle)
 			
 func _fileSortTime(toggle):
+	print(toggle)
+	print(!fileSort)
+	print(file_sort_button.visible)
 	beer_timer.start(randi_range(5,20))
 	if toggle and !fileSort and file_sort_button.visible == true:
 		fileSort = FILE_SORT.instantiate()
 		add_child(fileSort)
-	if day > 1:
-		_snakeTime(toggle)
-	if day > 2:
-		_chickenHuntTime(toggle)
+		if day > 1:
+			_snakeTime(toggle)
+		if day > 2:
+			_chickenHuntTime(toggle)
 
 func _chickenHuntTime(toggle):
 	_hide(!toggle)
-	if !fileSort:
-		_fileSortTime(toggle)
-	if !snake:
-		_snakeTime(toggle)
 	if toggle and !chickenHunt and chicken_hunt_button.visible == true:
 		chickenHunt = CHICKEN_HUNT.instantiate()
 		add_child(chickenHunt)
 		
-
 func _beer():
 	beer.queue_free()
 	beer = null
@@ -182,12 +184,9 @@ func _chickenHuntPass():
 	passedGames += 1
 	chickenHunt.queue_free()
 	chickenHunt = null
-	if !hidePress:
-		_hide(!hidePress)
 	if passedGames == day:
 		_pass()
 	
-
 func _snakePass():
 	foodAte = 0
 	snake.visible = false
@@ -234,7 +233,6 @@ func _changeDays():
 	if day >=4:
 		day_4_label.visible = true
 		
-
 func _gameOver():
 	if snake:
 		snake.queue_free()

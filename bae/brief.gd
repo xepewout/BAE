@@ -6,7 +6,7 @@ extends Node2D
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if main.day == 2:
 		label.text = ("Greetings worker. 
 		Yesterday you did pretty good at sorting files. 

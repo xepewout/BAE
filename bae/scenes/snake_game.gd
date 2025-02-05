@@ -9,5 +9,5 @@ func _electric():
 func _drunk():
 	timer.wait_time = .1
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	food.set_text("Food Ate \n" + str(main.foodAte) + "/15")
