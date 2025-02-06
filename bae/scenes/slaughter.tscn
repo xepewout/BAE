@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1bwu731wwxjv"]
+
+[ext_resource type="Texture2D" uid="uid://de3gu7l2ca1jl" path="res://assests/sprites/slaughter/beltUp.png" id="1_3hnae"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_3hnae")

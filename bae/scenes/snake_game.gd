@@ -6,7 +6,7 @@ extends Node2D
 func _electric():
 	timer.wait_time = timer.wait_time  * .5
 	
-func _drunk():
+func _normal():
 	timer.wait_time = .1
 
 func _process(_delta: float) -> void:

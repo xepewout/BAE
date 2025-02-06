@@ -71,7 +71,6 @@ metadata/_edit_group_ = true
 texture = ExtResource("5_ssvrf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChickenM"]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_3lute")
 
 [node name="Fox" type="Area2D" parent="."]
@@ -96,7 +95,6 @@ texture = ExtResource("8_us4oj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fox1"]
 position = Vector2(-1.25, -1.25)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_sr1ew")
 
 [connection signal="input_event" from="Chicken" to="." method="_on_chicken_input_event"]

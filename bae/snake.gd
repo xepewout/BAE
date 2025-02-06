@@ -69,7 +69,7 @@ func _on_area_entered(area):
 		grow()
 		main.foodAte+=1
 		area._move_to_new_position()
-		if main.foodAte == main.snakeTarget:
+		if main.foodAte >= main.snakeTarget:
 			main._snakePass()
 	elif area.is_in_group("Wall"):
 		main.call_deferred("_damage")

@@ -28,12 +28,25 @@ func _input(event):
 		_checkTarget()
 
 func _checkTarget():
+	
 	if (absi(output - target) < 10):
+		main.buzzed = true
+		main.electric = false
+		main.drunk = false
+		main.beersDrank+=1
+	elif ((output - target) < -10):
+		main.electric = true
+		main.drunk = false
+		main.buzzed = false
+	else:
 		main.drunk = true
 		main.electric = false
-	else:
-		main.drunk = false
-		main.electric = true
+		main.buzzed = false
+	if main.beersDrank >= 3:
+		main.drunk = true
+		main.electric = false
+		main.buzzed = false
+		main.beersDrank = 0
 	main._beer()
 		
 			

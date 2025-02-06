@@ -36,6 +36,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label" type="Label" parent="."]
+offset_left = -4.0
+offset_top = -84.0
 offset_right = 976.0
 offset_bottom = 237.0
 size_flags_horizontal = 4

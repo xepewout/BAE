@@ -9,7 +9,7 @@ func _electric():
 	if buckets.timerTime > 1:
 		buckets.timerTime = buckets.timerTime - 1
 
-func _drunk():
+func _normal():
 	if buckets.timerTime > 1:
 		buckets.timerTime = 5
 		

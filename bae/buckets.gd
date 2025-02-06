@@ -57,7 +57,7 @@ func _input(event):
 			if !((fileNum == 0 and event.is_action_pressed("one")) or (fileNum == 1 and event.is_action_pressed("two")) or (fileNum == 2 and event.is_action_pressed("three"))):
 				main.call_deferred("_damage")
 				return
-			if main.filesSorted == main.filesTarget:
+			if main.filesSorted >= main.filesTarget:
 				main._filesPass()
 			else:
 				fileFlag = false

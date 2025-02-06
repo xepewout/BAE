@@ -14,11 +14,13 @@ var chickenHunt = CHICKEN_HUNT.instantiate()
 #VARIABLE STATES
 var drunk = false
 var electric = false
+var buzzed = false
 var day = 3
 var passedGames = 0
 var fileStart = false
 var hidePress = true
 #TARGETS
+var beersDrank = 0
 var snakeTarget = 15
 var filesTarget = 10
 var chickenHuntTarget = 10
@@ -68,9 +70,11 @@ func _process(_delta: float) -> void:
 		if brief.visible:
 			brief.visible = false
 
+#temp damage function for chicken_hunt
 func _damage2():
 	anger.value += 10
 
+#damage function puts anger up
 func _damage():
 	anger.value += 10
 	if drunk:
@@ -95,7 +99,8 @@ func _damage():
 		fileSort.queue_free()
 		fileSort = FILE_SORT.instantiate()
 		add_child(fileSort)
-		
+	
+#the beer timer
 func _beerTime():
 	get_tree().paused = true
 	beer_timer.start(randi_range(5,20))
@@ -105,19 +110,11 @@ func _beerTime():
 	else:
 		beer.queue_free()
 		beer = null
-		_damage()
 
-func _snakeTime(toggle):
-	print(toggle)
-	print(!snake)
-	print(snake_button.visible)
-	if toggle and !snake and snake_button.visible == true:
-		snake = SNAKE_GAME.instantiate()
-		add_child(snake)
-		if !fileSort:
-			_fileSortTime(toggle)
-			
+
+#add filesort to the game - first function to add
 func _fileSortTime(toggle):
+	#debug
 	print(toggle)
 	print(!fileSort)
 	print(file_sort_button.visible)
@@ -129,13 +126,26 @@ func _fileSortTime(toggle):
 			_snakeTime(toggle)
 		if day > 2:
 			_chickenHuntTime(toggle)
-
+#add snake to the game
+func _snakeTime(toggle):
+	#debug
+	print(toggle)
+	print(!snake)
+	print(snake_button.visible)
+	if toggle and !snake and snake_button.visible == true:
+		snake = SNAKE_GAME.instantiate()
+		add_child(snake)
+		if !fileSort:
+			_fileSortTime(toggle)
+			
+#add chicken hunt to the game
 func _chickenHuntTime(toggle):
 	_hide(!toggle)
 	if toggle and !chickenHunt and chicken_hunt_button.visible == true:
 		chickenHunt = CHICKEN_HUNT.instantiate()
 		add_child(chickenHunt)
 		
+#beer scene calls beer after checking target
 func _beer():
 	beer.queue_free()
 	beer = null
@@ -149,13 +159,18 @@ func _beer():
 			snake._electric()
 		if chickenHunt:
 			chickenHunt._electric()
-	if drunk:
+	elif drunk:
 		drunk_pic.visible = true
 		if fileSort:
-			fileSort._drunk()
+			fileSort._normal()
 		if snake:
-			snake._drunk()
-		
+			snake._normal()
+	else:
+		if snake:
+			snake._normal()
+		if fileSort:
+			fileSort._normal()
+		print("buzzed")
 func _hide(toggle):
 	if chickenHunt and chicken_hunt_button.visible:
 		chickenHunt.visible = !toggle
