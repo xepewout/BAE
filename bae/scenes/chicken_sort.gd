@@ -3,7 +3,10 @@ extends Node2D
 @onready var chicken_m: Area2D = $ChickenM
 @onready var fox: Area2D = $Fox
 @onready var fox_1: Area2D = $Fox1
+<<<<<<< Updated upstream
 @onready var main: Node2D = $".."
+=======
+>>>>>>> Stashed changes
 
 var pictures = [chicken, chicken_m, fox, fox_1]
 var totalPairs = 2
