@@ -14,7 +14,6 @@ func _process(delta):
 	var velocity = Vector2.ZERO # The player's movement vector.
 	if Input.is_action_pressed("Move_Right"):
 		velocity.x += 1
-		print("w")
 	if Input.is_action_pressed("Move_Left"):
 		velocity.x -= 1
 	if Input.is_action_pressed("Move_Down"):
@@ -28,14 +27,12 @@ func _process(delta):
 	position += velocity * delta
 	
 	if Input.is_action_pressed("space") and inMob:
-		print("chicken caught")
 		tempChick._free()
 		main.chickensCaught+=1
 		if main.chickensCaught == main.chickenHuntTarget:
 			main._chickenHuntPass()
 
 func _on_area_entered(area: Area2D) -> void:
-	print("inMob")
 	if area.is_in_group("mob"):
 		inMob = true
 	tempChick = area

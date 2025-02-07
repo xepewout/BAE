@@ -27,11 +27,11 @@ var beersDrank = 0
 var snakeTarget = 15
 var filesTarget = 10
 var chickenHuntTarget = 10
-var picturesTarget = 10
+var chickenSortTarget = 10
 var foodAte = 0
 var filesSorted = 0
 var chickensCaught = 0
-var picturesMatched = 0
+var chickensMatched = 0
 
 @onready var game_timer: Timer = $GameTimer
 @onready var chicken_hunt_button: Button = $ChickenHuntButton
@@ -90,15 +90,15 @@ func _damage(game):
 	if drunk:
 		filesSorted -= randi_range(-4,4)
 		foodAte -= randi_range(-4,4)
-		picturesMatched -= randi_range(-4,4)
+		chickensMatched -= randi_range(-4,4)
 	elif electric:
 		filesSorted += 1
 		foodAte += 1
-		picturesMatched -= 1
+		chickensMatched -= 1
 	else:
 		filesSorted -= 1
 		foodAte -= 1
-		picturesMatched -= 2
+		chickensMatched -= 2
 		
 	drunk = false
 	electric = false
@@ -112,6 +112,10 @@ func _damage(game):
 		fileSort.queue_free()
 		fileSort = FILE_SORT.instantiate()
 		add_child(fileSort)
+	if game == "Chicken Sort" and chickenSort:
+		chickenSort.queue_free()
+		chickenSort = CHICKEN_SORT.instantiate()
+		add_child(chickenSort)
 	
 #the beer timer
 func _beerTime():
@@ -222,6 +226,16 @@ func _hide(toggle):
 		else:
 			fileSort.process_mode = PROCESS_MODE_DISABLED
 	hidePress = toggle
+
+func _chickenSortPass():
+	chickensMatched = 0
+	chickenSort.visible = false
+	chicken_sort_button.visible = false
+	passedGames += 1
+	chickenSort.queue_free()
+	chickenSort = null
+	if passedGames == day:
+		_pass()
 
 func _chickenHuntPass():
 	chickensCaught = 0
