@@ -18,7 +18,7 @@ var chickenSort = CHICKEN_SORT.instantiate()
 var drunk = false
 var electric = false
 var buzzed = false
-var day = 4
+var day = 5
 var passedGames = 0
 var fileStart = false
 var hidePress = true
@@ -291,8 +291,9 @@ func _changeDays():
 		game_timer.start(120)
 		chicken_hunt_button.visible = true
 	if day >=4:
-		day_4_label.visible = true
 		chicken_sort_button.visible = true
+	if day >=5:
+		day_4_label.visible = true
 		
 func _gameOver():
 	if snake:

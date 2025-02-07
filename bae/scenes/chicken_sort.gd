@@ -4,6 +4,7 @@ extends Node2D
 @onready var fox: Area2D = $Fox
 @onready var fox_1: Area2D = $Fox1
 @onready var main: Node2D = $".."
+@onready var chickens: Label = $Chickens
 
 
 var totalPairs = 2
@@ -13,6 +14,9 @@ var data = 0
 var Tempchicken: Area2D
 var debug = 0
 var picturesDone = 0
+
+func _process(_delta: float) -> void:
+	chickens.set_text("Chickens sorted \n" + str(main.chickensMatched) + "/10")
 
 func _click() -> bool:
 	print(data)
@@ -43,11 +47,10 @@ func _shuffle():
 	var pictures = [BigChicken, chicken_m, fox, fox_1]
 	randomize()
 	pictures.shuffle()
+	pictures[0].position = Vector2(870,218)
+	pictures[1].position = Vector2(730, 218)
+	pictures[2].position = Vector2(730,360)
+	pictures[3].position = Vector2(870,360)
 	for i in pictures.size():
 		pictures[i].visible = true
-	pictures[0] = Vector2(1075,273)
-	pictures[1] = Vector2(935, 273)
-	pictures[2] = Vector2(935,415)
-	pictures[3] = Vector2(1075,415)
-
 	

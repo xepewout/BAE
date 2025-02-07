@@ -5,6 +5,13 @@
 [node name="Brief" type="Node2D"]
 script = ExtResource("1_nt5jd")
 
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 124.0
+offset_top = 84.0
+offset_right = 1172.0
+offset_bottom = 656.0
+color = Color(0, 0, 0, 1)
+
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = 131.0
 offset_top = 91.0
@@ -13,12 +20,12 @@ offset_bottom = 650.0
 color = Color(0.810722, 0.496633, 0.880834, 1)
 
 [node name="EnterLabel" type="Label" parent="."]
-offset_left = 127.0
-offset_top = 602.0
-offset_right = 1117.0
-offset_bottom = 647.0
+offset_left = 132.0
+offset_top = 605.0
+offset_right = 1164.0
+offset_bottom = 650.0
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "Press Enter to Continue..."
