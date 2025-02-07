@@ -5,6 +5,7 @@ var pairsFound = 0
 var flag = 0
 var data = 0
 var Tempchicken: Area2D
+var debug = 0
 
 func _click() -> bool:
 	print(data)
@@ -22,4 +23,6 @@ func _checkIfDone():
 		
 func _setChicken(chicken: Area2D):
 	Tempchicken = chicken
+	print(Tempchicken)
+
 	
