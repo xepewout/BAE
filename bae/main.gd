@@ -27,9 +27,11 @@ var beersDrank = 0
 var snakeTarget = 15
 var filesTarget = 10
 var chickenHuntTarget = 10
+var picturesTarget = 10
 var foodAte = 0
 var filesSorted = 0
 var chickensCaught = 0
+var picturesMatched = 0
 
 @onready var game_timer: Timer = $GameTimer
 @onready var chicken_hunt_button: Button = $ChickenHuntButton
@@ -86,12 +88,15 @@ func _damage():
 	if drunk:
 		filesSorted -= randi_range(-4,4)
 		foodAte -= randi_range(-4,4)
+		picturesMatched -= randi_range(-4,4)
 	elif electric:
 		filesSorted += 1
 		foodAte += 1
+		picturesMatched -= 1
 	else:
 		filesSorted -= 1
 		foodAte -= 1
+		picturesMatched -= 2
 		
 	drunk = false
 	electric = false
@@ -116,7 +121,6 @@ func _beerTime():
 	else:
 		beer.queue_free()
 		beer = null
-
 
 #add filesort to the game - first function to add
 func _fileSortTime(toggle):
