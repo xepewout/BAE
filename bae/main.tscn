@@ -61,6 +61,16 @@ toggle_mode = true
 icon = ExtResource("7_2gcre")
 flat = true
 
+[node name="ChickenSortButton" type="Button" parent="."]
+visible = false
+offset_left = 216.0
+offset_top = 326.0
+offset_right = 291.0
+offset_bottom = 401.0
+toggle_mode = true
+icon = ExtResource("7_2gcre")
+flat = true
+
 [node name="HideButton" type="Button" parent="."]
 offset_left = 503.0
 offset_top = 527.0
@@ -145,6 +155,7 @@ autowrap_mode = 2
 [connection signal="toggled" from="SnakeButton" to="." method="_snakeTime"]
 [connection signal="toggled" from="FileSortButton" to="." method="_fileSortTime"]
 [connection signal="toggled" from="ChickenHuntButton" to="." method="_chickenHuntTime"]
+[connection signal="toggled" from="ChickenSortButton" to="." method="_chickenSortTime"]
 [connection signal="toggled" from="HideButton" to="." method="_hide"]
 [connection signal="timeout" from="VictoryTimer" to="." method="_changeDays"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_reload"]

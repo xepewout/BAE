@@ -29,11 +29,11 @@ size = Vector2(287.5, 307.5)
 script = ExtResource("1_xgf3y")
 
 [node name="CanvasLayer" type="TextureRect" parent="."]
-visible = false
 offset_left = 814.0
 offset_top = 126.0
 offset_right = 1179.0
 offset_bottom = 538.0
+mouse_filter = 2
 texture = ExtResource("3_b5vws")
 metadata/_edit_use_anchors_ = true
 
@@ -43,6 +43,7 @@ offset_left = 33.0
 offset_top = 33.0
 offset_right = 346.0
 offset_bottom = 380.0
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="timerBar" type="TextureProgressBar" parent="CanvasLayer/ColorRect"]

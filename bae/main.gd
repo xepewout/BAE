@@ -6,16 +6,19 @@ const FILE_SORT = preload("res://scenes/file_sort.tscn")
 const BEER = preload("res://scenes/beer.tscn")
 const CHICKEN_HUNT = preload("res://scenes/chicken_hunt.tscn")
 const BRIEF = preload("res://brief.tscn")
+const CHICKEN_SORT = preload("res://scenes/chicken_sort.tscn")
 var brief = BRIEF.instantiate()
 var snake = SNAKE_GAME.instantiate()
 var fileSort = FILE_SORT.instantiate()
 var beer = BEER.instantiate()
 var chickenHunt = CHICKEN_HUNT.instantiate()
+var chickenSort = CHICKEN_SORT.instantiate()
+
 #VARIABLE STATES
 var drunk = false
 var electric = false
 var buzzed = false
-var day = 3
+var day = 4
 var passedGames = 0
 var fileStart = false
 var hidePress = true
@@ -30,6 +33,7 @@ var chickensCaught = 0
 
 @onready var game_timer: Timer = $GameTimer
 @onready var chicken_hunt_button: Button = $ChickenHuntButton
+@onready var chicken_sort_button: Button = $ChickenSortButton
 @onready var beer_timer: Timer = $BeerTimer
 @onready var snake_button: Button = $SnakeButton
 @onready var hide_button: Button = $HideButton
@@ -54,10 +58,12 @@ func _ready() -> void:
 	snake.queue_free()
 	fileSort.queue_free()
 	beer.queue_free()
+	chickenSort.queue_free()
 	snake = null
 	fileSort = null
 	beer = null
 	chickenHunt = null
+	chickenSort = null
 	_changeDays()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -126,6 +132,8 @@ func _fileSortTime(toggle):
 			_snakeTime(toggle)
 		if day > 2:
 			_chickenHuntTime(toggle)
+		if day >3:
+			_chickenSortTime(toggle)
 #add snake to the game
 func _snakeTime(toggle):
 	#debug
@@ -144,7 +152,17 @@ func _chickenHuntTime(toggle):
 	if toggle and !chickenHunt and chicken_hunt_button.visible == true:
 		chickenHunt = CHICKEN_HUNT.instantiate()
 		add_child(chickenHunt)
+		if !chickenSort:
+			_chickenSortTime(toggle)
 		
+#add chicken sort to the game
+func _chickenSortTime(toggle):
+	_hide(!toggle)
+	if toggle and !chickenSort and chicken_sort_button.visible == true:
+		chickenSort = CHICKEN_SORT.instantiate()
+		add_child(chickenSort)
+		if !chickenHunt:
+			_chickenHuntTime(toggle)
 #beer scene calls beer after checking target
 func _beer():
 	beer.queue_free()
@@ -171,7 +189,14 @@ func _beer():
 		if fileSort:
 			fileSort._normal()
 		print("buzzed")
+
 func _hide(toggle):
+	if chickenSort and chicken_sort_button.visible:
+		chickenSort.visible = !toggle
+		if !toggle:
+			chickenSort.process_mode = PROCESS_MODE_INHERIT
+		else: 
+			chickenSort.process_mode = PROCESS_MODE_DISABLED
 	if chickenHunt and chicken_hunt_button.visible:
 		chickenHunt.visible = !toggle
 		if !toggle:
@@ -247,6 +272,7 @@ func _changeDays():
 		chicken_hunt_button.visible = true
 	if day >=4:
 		day_4_label.visible = true
+		chicken_sort_button.visible = true
 		
 func _gameOver():
 	if snake:

@@ -5,7 +5,8 @@ extends Area2D
 
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if Input.is_action_just_pressed("mouse_left"):
+	if event.is_action("mouse_left") and event.is_pressed() and not event.is_echo():
+	#if Input.is_action_just_pressed("mouse_left"):
 		chicken_sort.debug+=1
 		print(chicken_sort.debug)
 		chicken_sort.flag += 1
