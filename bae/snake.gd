@@ -33,7 +33,7 @@ func _move():
 
 		# Check for self-collision BEFORE updating the position
 		if new_position in segment_positions:
-			main._damage()
+			main._damage("Snake")
 			
 
 		# Store the old head position to shift the body properly
@@ -72,5 +72,5 @@ func _on_area_entered(area):
 		if main.foodAte >= main.snakeTarget:
 			main._snakePass()
 	elif area.is_in_group("Wall"):
-		main.call_deferred("_damage")
+		main.call_deferred("_damage", "Snake")
 	

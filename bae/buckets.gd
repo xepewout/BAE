@@ -27,7 +27,7 @@ func _process(_delta: float) -> void:
 	
 func _shuffle():
 	if fileFlag == true:
-		main._damage()
+		main._damage("File Sort")
 	timer.start(timerTime)
 	randomize()
 	buckets.shuffle()
@@ -55,7 +55,7 @@ func _input(event):
 			return
 		else:	
 			if !((fileNum == 0 and event.is_action_pressed("one")) or (fileNum == 1 and event.is_action_pressed("two")) or (fileNum == 2 and event.is_action_pressed("three"))):
-				main.call_deferred("_damage")
+				main.call_deferred("_damage",("File Sort"))
 				return
 			if main.filesSorted >= main.filesTarget:
 				main._filesPass()

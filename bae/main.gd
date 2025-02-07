@@ -83,7 +83,9 @@ func _damage2():
 	anger.value += 10
 
 #damage function puts anger up
-func _damage():
+func _damage(game):
+	print("hi")
+	print(game)
 	anger.value += 10
 	if drunk:
 		filesSorted -= randi_range(-4,4)
@@ -102,11 +104,11 @@ func _damage():
 	electric = false
 	if anger.value == 100:
 		_gameOver()
-	if snake: 
+	if game == "Snake" and snake: 
 		snake.queue_free()
 		snake = SNAKE_GAME.instantiate()
 		add_child(snake)
-	if fileSort:
+	if game == "File Sort" and fileSort:
 		fileSort.queue_free()
 		fileSort = FILE_SORT.instantiate()
 		add_child(fileSort)
