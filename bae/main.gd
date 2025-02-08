@@ -7,12 +7,14 @@ const BEER = preload("res://scenes/beer.tscn")
 const CHICKEN_HUNT = preload("res://scenes/chicken_hunt.tscn")
 const BRIEF = preload("res://brief.tscn")
 const CHICKEN_SORT = preload("res://scenes/chicken_sort.tscn")
+const SLAUGHTER = preload("res://scenes/slaughter.tscn")
 var brief = BRIEF.instantiate()
 var snake = SNAKE_GAME.instantiate()
 var fileSort = FILE_SORT.instantiate()
 var beer = BEER.instantiate()
 var chickenHunt = CHICKEN_HUNT.instantiate()
 var chickenSort = CHICKEN_SORT.instantiate()
+var slaughter = SLAUGHTER.instantiate()
 
 #VARIABLE STATES
 var drunk = false
@@ -23,9 +25,11 @@ var passedGames = 0
 var fileStart = false
 var hidePress = true
 #TARGETS
+var chickensKilled = 0
 var beersDrank = 0
 var snakeTarget = 15
 var filesTarget = 10
+var slaughterTarget = 15
 var chickenHuntTarget = 10
 var chickenSortTarget = 10
 var foodAte = 0
@@ -61,6 +65,7 @@ func _ready() -> void:
 	fileSort.queue_free()
 	beer.queue_free()
 	chickenSort.queue_free()
+	add_child(slaughter)
 	snake = null
 	fileSort = null
 	beer = null

@@ -15,10 +15,10 @@ collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_1kies")
 
-[node name="Area2D" type="Area2D" parent="." groups=["mob"]]
+[node name="body" type="Area2D" parent="." groups=["mob"]]
 script = ExtResource("2_eay2f")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body"]
 position = Vector2(21, 18)
 shape = SubResource("RectangleShape2D_w5y08")
 
@@ -33,4 +33,4 @@ offset_bottom = 39.0
 color = Color(0.458961, 0.991923, 0.822266, 1)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="body" to="." method="_on_area_2d_area_entered"]

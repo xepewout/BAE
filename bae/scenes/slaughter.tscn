@@ -28,9 +28,15 @@ metadata/_edit_group_ = true
 shape = SubResource("SegmentShape2D_vhpik")
 
 [node name="Death" type="Area2D" parent="." groups=["Wall"]]
-position = Vector2(624, 46)
+position = Vector2(623, 79)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Death"]
+position = Vector2(0, -33)
 shape = SubResource("SegmentShape2D_vhpik")
 
+[node name="Count" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [connection signal="timeout" from="Timer" to="." method="_chickenSpawn"]
+[connection signal="area_entered" from="Death" to="." method="_on_death_area_entered"]
