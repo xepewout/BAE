@@ -16,9 +16,7 @@ var timerTime = 5
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 
-	for i in buckets.size():
-		buckets[i].position = Vector2 (700,394) + addVector
-		addVector = addVector + Vector2(100,0)
+	_shuffle()
 
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
