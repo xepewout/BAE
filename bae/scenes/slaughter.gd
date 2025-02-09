@@ -35,3 +35,5 @@ func _chickenSpawn():
 func _on_death_area_entered(area: Area2D) -> void:
 	if area.name == "body":
 		main.chickensKilled += 1
+	if main.chickensKilled == main.slaughterTarget:
+		main._slaughterPass()

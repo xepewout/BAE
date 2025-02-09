@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dwn4mdqya7iqw"]
+[gd_scene load_steps=15 format=3 uid="uid://dwn4mdqya7iqw"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_qi0bm"]
 [ext_resource type="Texture2D" uid="uid://cyi6u8swj4gpj" path="res://assests/backgrounds/days/day1.png" id="2_qknfs"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cik3bh8wr3jh8" path="res://assests/sprites/ui/buttons/show.png" id="7_ibljf"]
 [ext_resource type="Texture2D" uid="uid://xsffyhpij8kf" path="res://assests/backgrounds/victory.png" id="8_7w3cx"]
 [ext_resource type="Texture2D" uid="uid://c6a1g8e6xoubd" path="res://assests/sprites/ui/buttons/chickenSortIcon.png" id="8_k7osb"]
+[ext_resource type="Texture2D" uid="uid://dlgcjaaj6t7lk" path="res://assests/sprites/ui/buttons/slaughterIcon.png" id="9_8mhkg"]
 [ext_resource type="Texture2D" uid="uid://5eahl031hl2r" path="res://assests/backgrounds/gameOver.png" id="9_htxho"]
 [ext_resource type="Texture2D" uid="uid://ms2yk5xoogwx" path="res://assests/sprites/ui/blackBar.png" id="10_fu10p"]
 [ext_resource type="Texture2D" uid="uid://bs63ryecviqnn" path="res://assests/backgrounds/electric.png" id="10_k0we2"]
@@ -34,6 +35,7 @@ texture_progress = ExtResource("11_51jik")
 [node name="BeerTimer" type="Timer" parent="."]
 
 [node name="SnakeButton" type="Button" parent="."]
+visible = false
 offset_left = 208.0
 offset_top = 151.0
 offset_right = 283.0
@@ -43,6 +45,7 @@ icon = ExtResource("5_ghql2")
 flat = true
 
 [node name="FileSortButton" type="Button" parent="."]
+visible = false
 offset_left = 207.0
 offset_top = 69.0
 offset_right = 282.0
@@ -52,6 +55,7 @@ icon = ExtResource("6_poqp5")
 flat = true
 
 [node name="ChickenHuntButton" type="Button" parent="."]
+visible = false
 offset_left = 208.0
 offset_top = 236.0
 offset_right = 283.0
@@ -61,12 +65,23 @@ icon = ExtResource("7_2gcre")
 flat = true
 
 [node name="ChickenSortButton" type="Button" parent="."]
+visible = false
 offset_left = 209.0
 offset_top = 325.0
 offset_right = 284.0
 offset_bottom = 400.0
 toggle_mode = true
 icon = ExtResource("8_k7osb")
+flat = true
+
+[node name="SlaughterButton" type="Button" parent="."]
+visible = false
+offset_left = 212.0
+offset_top = 413.0
+offset_right = 287.0
+offset_bottom = 488.0
+toggle_mode = true
+icon = ExtResource("9_8mhkg")
 flat = true
 
 [node name="HideButton" type="Button" parent="."]
@@ -154,6 +169,7 @@ autowrap_mode = 2
 [connection signal="toggled" from="FileSortButton" to="." method="_fileSortTime"]
 [connection signal="toggled" from="ChickenHuntButton" to="." method="_chickenHuntTime"]
 [connection signal="toggled" from="ChickenSortButton" to="." method="_chickenSortTime"]
+[connection signal="toggled" from="SlaughterButton" to="." method="_slaughterTime"]
 [connection signal="toggled" from="HideButton" to="." method="_hide"]
 [connection signal="timeout" from="VictoryTimer" to="." method="_changeDays"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_reload"]

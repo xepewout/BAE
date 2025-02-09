@@ -47,6 +47,7 @@ func _checkTarget():
 		main.electric = false
 		main.buzzed = false
 		main.beersDrank = 0
+		print("BEERS ", main.beersDrank)
 	main._beer()
 		
 			

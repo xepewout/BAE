@@ -16,11 +16,12 @@ var chickenHunt = CHICKEN_HUNT.instantiate()
 var chickenSort = CHICKEN_SORT.instantiate()
 var slaughter = SLAUGHTER.instantiate()
 
+
 #VARIABLE STATES
 var drunk = false
 var electric = false
 var buzzed = false
-var day = 5
+var day = 1
 var passedGames = 0
 var fileStart = false
 var hidePress = true
@@ -37,6 +38,7 @@ var filesSorted = 0
 var chickensCaught = 0
 var chickensMatched = 0
 
+@onready var slaughter_button: Button = $SlaughterButton
 @onready var game_timer: Timer = $GameTimer
 @onready var chicken_hunt_button: Button = $ChickenHuntButton
 @onready var chicken_sort_button: Button = $ChickenSortButton
@@ -65,12 +67,13 @@ func _ready() -> void:
 	fileSort.queue_free()
 	beer.queue_free()
 	chickenSort.queue_free()
-	add_child(slaughter)
+	slaughter.queue_free()
 	snake = null
 	fileSort = null
 	beer = null
 	chickenHunt = null
 	chickenSort = null
+	slaughter = null
 	_changeDays()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -149,6 +152,8 @@ func _fileSortTime(toggle):
 			_chickenHuntTime(toggle)
 		if day >3:
 			_chickenSortTime(toggle)
+		if day>4:
+			_slaughterTime(toggle)
 #add snake to the game
 func _snakeTime(toggle):
 	#debug
@@ -169,6 +174,8 @@ func _chickenHuntTime(toggle):
 		add_child(chickenHunt)
 		if !chickenSort:
 			_chickenSortTime(toggle)
+		if !slaughter:
+			_slaughterTime(toggle)
 		
 #add chicken sort to the game
 func _chickenSortTime(toggle):
@@ -178,6 +185,15 @@ func _chickenSortTime(toggle):
 		add_child(chickenSort)
 		if !chickenHunt:
 			_chickenHuntTime(toggle)
+#add slaughter to the game
+func _slaughterTime(toggle):
+	_hide(!toggle)
+	if toggle and !slaughter and slaughter_button.visible == true:
+		slaughter = SLAUGHTER.instantiate()
+		add_child(slaughter)
+		if !fileSort:
+			_fileSortTime(toggle)
+			
 #beer scene calls beer after checking target
 func _beer():
 	beer.queue_free()
@@ -231,6 +247,16 @@ func _hide(toggle):
 		else:
 			fileSort.process_mode = PROCESS_MODE_DISABLED
 	hidePress = toggle
+	
+func _slaughterPass():
+	chickensKilled = 0
+	slaughter.visible = false
+	slaughter_button.visible = false
+	passedGames += 1
+	slaughter.queue_free()
+	slaughter = null
+	if passedGames == day:
+		_pass()
 
 func _chickenSortPass():
 	chickensMatched = 0
@@ -298,7 +324,7 @@ func _changeDays():
 	if day >=4:
 		chicken_sort_button.visible = true
 	if day >=5:
-		day_4_label.visible = true
+		slaughter_button.visible = true
 		
 func _gameOver():
 	if snake:
@@ -310,6 +336,12 @@ func _gameOver():
 	if fileSort:
 		fileSort.queue_free()
 		fileSort = null
+	if chickenSort:
+		chickenSort.queue_free()
+		chickenSort = null
+	if slaughter:
+		slaughter.queue_free()
+		slaughter = null
 	game_over.visible = true
 	game_over_timer.start(1)
 	
