@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dwn4mdqya7iqw"]
+[gd_scene load_steps=16 format=3 uid="uid://dwn4mdqya7iqw"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_qi0bm"]
 [ext_resource type="Texture2D" uid="uid://cyi6u8swj4gpj" path="res://assests/backgrounds/days/day1.png" id="2_qknfs"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://5eahl031hl2r" path="res://assests/backgrounds/gameOver.png" id="9_htxho"]
 [ext_resource type="Texture2D" uid="uid://ms2yk5xoogwx" path="res://assests/sprites/ui/blackBar.png" id="10_fu10p"]
 [ext_resource type="Texture2D" uid="uid://bs63ryecviqnn" path="res://assests/backgrounds/electric.png" id="10_k0we2"]
+[ext_resource type="Texture2D" uid="uid://bydxkvbjvl8ma" path="res://assests/sprites/ui/buttons/slackIcon.png" id="11_2hue6"]
 [ext_resource type="Texture2D" uid="uid://b40645sstsqp0" path="res://assests/sprites/ui/angerBar.png" id="11_51jik"]
 [ext_resource type="Texture2D" uid="uid://cptiw3v7iyamf" path="res://assests/backgrounds/drunk.png" id="11_rditm"]
 
@@ -94,6 +95,14 @@ action_mode = 0
 icon = ExtResource("7_ibljf")
 flat = true
 
+[node name="SlackButton" type="Button" parent="."]
+offset_left = 936.0
+offset_top = 59.0
+offset_right = 1011.0
+offset_bottom = 134.0
+icon = ExtResource("11_2hue6")
+flat = true
+
 [node name="BeerLabel" type="Label" parent="."]
 offset_left = 1045.0
 offset_top = 107.0
@@ -164,6 +173,10 @@ text = "Thank you for playing,
 game is still a work in progress but the goal is to add more minigames revolving around the established concept! Hope you enjoyed!"
 autowrap_mode = 2
 
+[node name="SlackTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="timeout" from="BeerTimer" to="." method="_beerTime"]
 [connection signal="toggled" from="SnakeButton" to="." method="_snakeTime"]
 [connection signal="toggled" from="FileSortButton" to="." method="_fileSortTime"]
@@ -171,7 +184,9 @@ autowrap_mode = 2
 [connection signal="toggled" from="ChickenSortButton" to="." method="_chickenSortTime"]
 [connection signal="toggled" from="SlaughterButton" to="." method="_slaughterTime"]
 [connection signal="toggled" from="HideButton" to="." method="_hide"]
+[connection signal="pressed" from="SlackButton" to="." method="_slack"]
 [connection signal="timeout" from="VictoryTimer" to="." method="_changeDays"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_reload"]
 [connection signal="timeout" from="DisplayTimer" to="." method="_display"]
 [connection signal="timeout" from="GameTimer" to="." method="_gameOver"]
+[connection signal="timeout" from="SlackTimer" to="." method="_slackTime"]

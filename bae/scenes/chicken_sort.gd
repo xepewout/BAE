@@ -30,7 +30,7 @@ func _click() -> bool:
 	return false
 
 func _checkIfDone():
-	if pairsFound == totalPairs:
+	if pairsFound >= totalPairs:
 		main.chickensMatched+=1
 		print("chickens MAtched:")
 		print(main.chickensMatched)

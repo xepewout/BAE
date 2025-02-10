@@ -41,3 +41,6 @@ func _process(_delta: float) -> void:
 		them for breeding. You will also take over Andy’s slaughterhouse 
 		responsibility. Kill the chickens that are plump enough. 
 		Even though it is Friday, I expect you to work extra hard")
+	if main.day == 6:
+		label.text = ("END.
+		See you next week.")

@@ -8,7 +8,9 @@ const CHICKEN_HUNT = preload("res://scenes/chicken_hunt.tscn")
 const BRIEF = preload("res://brief.tscn")
 const CHICKEN_SORT = preload("res://scenes/chicken_sort.tscn")
 const SLAUGHTER = preload("res://scenes/slaughter.tscn")
+const SLACK = preload("res://slack.tscn")
 var brief = BRIEF.instantiate()
+var slack = SLACK.instantiate()
 var snake = SNAKE_GAME.instantiate()
 var fileSort = FILE_SORT.instantiate()
 var beer = BEER.instantiate()
@@ -25,6 +27,7 @@ var day = 1
 var passedGames = 0
 var fileStart = false
 var hidePress = true
+var slackMessage = 0
 #TARGETS
 var chickensKilled = 0
 var beersDrank = 0
@@ -57,10 +60,14 @@ var chickensMatched = 0
 @onready var display_timer: Timer = $DisplayTimer
 @onready var time_label: Label = $TimeLabel
 @onready var day_4_label: Label = $Day4Label
+@onready var slack_button: Button = $SlackButton
+@onready var slack_timer: Timer = $SlackTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_child(brief)
+	add_child(slack)
+	slack.visible = false
 	brief.visible = true
 	anger.value = 0
 	snake.queue_free()
@@ -85,6 +92,11 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("enter"):
 		if brief.visible:
 			brief.visible = false
+		if slack.visible:
+			slack.visible = false
+			slackMessage += 1
+			slack_button.visible = false
+			slack_timer.start(2)
 
 #temp damage function for chicken_hunt
 func _damage2():
@@ -194,6 +206,8 @@ func _slaughterTime(toggle):
 		if !fileSort:
 			_fileSortTime(toggle)
 			
+func _slackTime():
+	slack_button.visible = true
 #beer scene calls beer after checking target
 func _beer():
 	beer.queue_free()
@@ -220,6 +234,13 @@ func _beer():
 		if fileSort:
 			fileSort._normal()
 		print("buzzed")
+
+func _slack():
+	slack.visible = true
+	if anger.value >= 10:
+		anger.value -= 5
+	if game_timer:
+		game_timer.start(game_timer.time_left + 5)
 
 func _hide(toggle):
 	if chickenSort and chicken_sort_button.visible:
@@ -315,6 +336,7 @@ func _changeDays():
 	brief.visible = true
 	victory.visible = false
 	beer_timer.stop()
+	slackMessage = 0
 	if day >= 2:
 		snake_button.visible = true
 	if day >= 3:
