@@ -74,7 +74,60 @@ func _process(delta: float) -> void:
 			label.text = ("Andy -> When he left, I knew I needed 
 			to pass on the tradition. Glad you are on the squad bro.")
 		elif main.slackMessage == 5:
-			label.text = ("I miss him")
+			label.text = ("I hope you are the buzzzzzz 
+			bus right now.")
+		elif main.slackMessage >= 6:
+			label.text = ("No new messages.")
+	elif main.day == 4:
+		if main.slackMessage == 0:
+			label.text = ("Andy ->  I love drinking on a hangover. 
+			Feather of the chicken, lol.")
+		elif main.slackMessage == 1:
+			label.text = ("Andy -> Dude these chickens are hard 
+			to catch and match. Just spilled a bunch of beer 
+			on my computer. ")
+		elif main.slackMessage == 2:
+			label.text = ("Andy -> Do you think the boss 
+			is married? I don’t think he’s married. ")
+		elif main.slackMessage == 3:
+			label.text = ("Andy -> I heard the boss has 
+			really small hands. Like baby hands. Hands 
+			so small he makes rings look like bracelets.")
+		elif main.slackMessage == 4:
+			label.text = ("Andy -> The boss has probably 
+			never been in love. That is why he pours so 
+			much into his work. I prefer to pour beer into a
+			 cup!!! I'm brazy.")
+		elif main.slackMessage == 5:
+			label.text = ("The boss blows!!!! GOT ME 
+			BREEDIN CHICKEN CAUSE HE DON’T KNOW NOTHIN 
+			ABOUT BREEDIN NOTHIN.")
+		elif main.slackMessage >= 6:
+			label.text = ("No new messages.")
+	elif main.day == 5:
+		if main.slackMessage == 0:
+			label.text = ("Andy ->  I love drinking on a hangover. 
+			Feather of the chicken, lol.")
+		elif main.slackMessage == 1:
+			label.text = ("Andy -> Dude these chickens are hard 
+			to catch and match. Just spilled a bunch of beer 
+			on my computer. ")
+		elif main.slackMessage == 2:
+			label.text = ("Andy -> Do you think the boss 
+			is married? I don’t think he’s married. ")
+		elif main.slackMessage == 3:
+			label.text = ("Andy -> I heard the boss has 
+			really small hands. Like baby hands. Hands 
+			so small he makes rings look like bracelets.")
+		elif main.slackMessage == 4:
+			label.text = ("Andy -> The boss has probably 
+			never been in love. That is why he pours so 
+			much into his work. I prefer to pour beer into a
+			 cup!!! I'm brazy.")
+		elif main.slackMessage == 5:
+			label.text = ("The boss blows!!!! GOT ME 
+			BREEDIN CHICKEN CAUSE HE DON’T KNOW NOTHIN 
+			ABOUT BREEDIN NOTHIN.")
 		elif main.slackMessage >= 6:
 			label.text = ("No new messages.")
 			

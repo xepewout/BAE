@@ -169,9 +169,6 @@ func _fileSortTime(toggle):
 #add snake to the game
 func _snakeTime(toggle):
 	#debug
-	print(toggle)
-	print(!snake)
-	print(snake_button.visible)
 	if toggle and !snake and snake_button.visible == true:
 		snake = SNAKE_GAME.instantiate()
 		add_child(snake)
@@ -238,8 +235,8 @@ func _beer():
 func _slack():
 	slack.visible = true
 	if anger.value >= 10:
-		anger.value -= 5
-	if game_timer:
+		anger.value -= 2
+	if day>=3:
 		game_timer.start(game_timer.time_left + 5)
 
 func _hide(toggle):

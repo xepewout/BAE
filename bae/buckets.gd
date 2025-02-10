@@ -15,10 +15,8 @@ var timerTime = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-
 	_shuffle()
 
-	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	timer_bar.value = timer.time_left * 20
