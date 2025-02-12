@@ -106,28 +106,26 @@ func _process(delta: float) -> void:
 			label.text = ("No new messages.")
 	elif main.day == 5:
 		if main.slackMessage == 0:
-			label.text = ("Andy ->  I love drinking on a hangover. 
-			Feather of the chicken, lol.")
+			label.text = ("A.I. → I am your new assistant. 
+			I can also provide emotional–support.")
 		elif main.slackMessage == 1:
-			label.text = ("Andy -> Dude these chickens are hard 
-			to catch and match. Just spilled a bunch of beer 
-			on my computer. ")
+			label.text = ("A.I. → Fun fact of the day is 
+			that chickens can dream as they experience 
+			R.E.M. sleep.")
 		elif main.slackMessage == 2:
-			label.text = ("Andy -> Do you think the boss 
-			is married? I don’t think he’s married. ")
+			label.text = ("A.I. → Did you know chickens 
+			are self aware and experience a sense of 
+			individuality? ")
 		elif main.slackMessage == 3:
-			label.text = ("Andy -> I heard the boss has 
-			really small hands. Like baby hands. Hands 
-			so small he makes rings look like bracelets.")
+			label.text = ("A.I.  → Chickens have around 
+			thirty types of vocalizations that make 
+			up their complex communication system. ")
 		elif main.slackMessage == 4:
-			label.text = ("Andy -> The boss has probably 
-			never been in love. That is why he pours so 
-			much into his work. I prefer to pour beer into a
-			 cup!!! I'm brazy.")
+			label.text = ("A.I → Isn’t work so 
+			exciting.")
 		elif main.slackMessage == 5:
-			label.text = ("The boss blows!!!! GOT ME 
-			BREEDIN CHICKEN CAUSE HE DON’T KNOW NOTHIN 
-			ABOUT BREEDIN NOTHIN.")
+			label.text = ("A.I. → Please enjoy 
+			your weekend responsibly.")
 		elif main.slackMessage >= 6:
 			label.text = ("No new messages.")
 			

@@ -151,21 +151,21 @@ func _beerTime():
 #add filesort to the game - first function to add
 func _fileSortTime(toggle):
 	#debug
-	print(toggle)
-	print(!fileSort)
-	print(file_sort_button.visible)
 	beer_timer.start(randi_range(5,20))
 	if toggle and !fileSort and file_sort_button.visible == true:
 		fileSort = FILE_SORT.instantiate()
 		add_child(fileSort)
-		if day > 1:
+		if day > 1 and snake_button.visible == true:
 			_snakeTime(toggle)
-		if day > 2:
+		if day > 2 and chicken_hunt_button.visible == true:
 			_chickenHuntTime(toggle)
-		if day >3:
+		if day >3 and chicken_sort_button.visible == true:
 			_chickenSortTime(toggle)
-		if day>4:
+		if day>4 and slaughter_button.visible == true:
 			_slaughterTime(toggle)
+	elif fileSort:
+		if fileSort.visible == false:
+			_hide(toggle)
 #add snake to the game
 func _snakeTime(toggle):
 	#debug
@@ -174,6 +174,9 @@ func _snakeTime(toggle):
 		add_child(snake)
 		if !fileSort:
 			_fileSortTime(toggle)
+	elif snake:
+		if snake.visible == false:
+			_hide(toggle)
 			
 #add chicken hunt to the game
 func _chickenHuntTime(toggle):
@@ -181,10 +184,15 @@ func _chickenHuntTime(toggle):
 	if toggle and !chickenHunt and chicken_hunt_button.visible == true:
 		chickenHunt = CHICKEN_HUNT.instantiate()
 		add_child(chickenHunt)
-		if !chickenSort:
-			_chickenSortTime(toggle)
-		if !slaughter:
-			_slaughterTime(toggle)
+		if day > 3:
+			if !chickenSort:
+				_chickenSortTime(toggle)
+		if day > 4:
+			if !slaughter:
+				_slaughterTime(toggle)
+	elif chickenHunt:
+		if chickenHunt.visible == false:
+			_hide(toggle)
 		
 #add chicken sort to the game
 func _chickenSortTime(toggle):
@@ -194,6 +202,9 @@ func _chickenSortTime(toggle):
 		add_child(chickenSort)
 		if !chickenHunt:
 			_chickenHuntTime(toggle)
+	elif chickenSort:
+		if chickenSort.visible == false:
+			_hide(toggle)
 #add slaughter to the game
 func _slaughterTime(toggle):
 	_hide(!toggle)
@@ -202,7 +213,9 @@ func _slaughterTime(toggle):
 		add_child(slaughter)
 		if !fileSort:
 			_fileSortTime(toggle)
-			
+	elif slaughter:
+		if slaughter.visible == false:
+			_hide(toggle)
 func _slackTime():
 	slack_button.visible = true
 #beer scene calls beer after checking target
@@ -235,7 +248,7 @@ func _beer():
 func _slack():
 	slack.visible = true
 	if anger.value >= 10:
-		anger.value -= 2
+		anger.value -= 3
 	if day>=3:
 		game_timer.start(game_timer.time_left + 5)
 
