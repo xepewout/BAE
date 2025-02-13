@@ -27,7 +27,8 @@ func _process(delta):
 	position += velocity * delta
 	
 	if Input.is_action_pressed("space") and inMob:
-		tempChick._free()
+		if tempChick:
+			tempChick._free()
 		main.chickensCaught+=1
 		if main.chickensCaught == main.chickenHuntTarget:
 			main._chickenHuntPass()

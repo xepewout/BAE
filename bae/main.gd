@@ -62,6 +62,7 @@ var chickensMatched = 0
 @onready var day_4_label: Label = $Day4Label
 @onready var slack_button: Button = $SlackButton
 @onready var slack_timer: Timer = $SlackTimer
+@onready var buzz_pic: TextureRect = $BuzzPic
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -243,7 +244,7 @@ func _beer():
 			snake._normal()
 		if fileSort:
 			fileSort._normal()
-		print("buzzed")
+		buzz_pic.visible = true
 
 func _slack():
 	slack.visible = true
