@@ -381,6 +381,7 @@ func _gameOver():
 func _display():
 	electric_pic.visible = false
 	drunk_pic.visible = false
+	buzz_pic.visible = false 
 	
 func _reload():
 	get_tree().reload_current_scene()
